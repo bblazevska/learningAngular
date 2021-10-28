@@ -1,3 +1,4 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
@@ -52,5 +53,6 @@ export class AppComponent {
     this.user.gender = this.signupForm.value.gender;
     this.submitted = true;
 
+    this.signupForm.reset();
   }
 }
