@@ -12,11 +12,12 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.signupForm = new FormGroup({
-      userData: new FormGroup({
-        username: new FormControl(null, Validators.required),
-        email: new FormControl(null, [Validators.required, Validators.email]),
+      'userData': new FormGroup({
+       'username': new FormControl(null, Validators.required),
+        'email': new FormControl(null, [Validators.required, Validators.email]),
       }),
-      gender: new FormControl("male"),
+      'gender': new FormControl("male"),
+      'hobbies': new FormArray([])
     });
   }
 
@@ -24,4 +25,12 @@ export class AppComponent implements OnInit {
     console.log(this.signupForm);
   }
 
+  onAddHobbie() {
+    const control = new FormControl(null, Validators.required);
+    (<FormArray>this.signupForm.get('hobbies')).push(control)
+  }
+
+  getControls() {
+    return (<FormArray>this.signupForm.get("hobbies")).controls;
+  }
 }
